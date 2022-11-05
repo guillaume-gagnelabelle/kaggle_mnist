@@ -14,10 +14,10 @@ code pour la régression logistique
   - python3 main.py [OPTION]...
  
 ### main_DL.py
-code pour les rseaux de neurones pondérés
+code pour les réseaux de neurones pondérés
   -  python3 main.py [OPTION]..
   
-## options possibles
+## Options possibles
 main.py
   - --batch_size <int>  (gère la taille d'un lot, defaut: 16)
   - --max_epoch <int>  (gère le nombre d'époques d'entraînement, défaut: 64) 
