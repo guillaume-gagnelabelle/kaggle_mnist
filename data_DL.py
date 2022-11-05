@@ -13,23 +13,9 @@ class Data:
 
     @staticmethod
     def get_mnist(args):
-        mnist_data = pd.DataFrame(pd.read_csv(args.path_data +'train.csv')).to_numpy()[:, :-1].reshape((-1, 28, 2, 28)).transpose(0, 2, 1, 3)  # .reshape(-1, 1, 28, 56)
+        mnist_data = pd.DataFrame(pd.read_csv(args.path_data +'train.csv')).to_numpy()[:, :-1].reshape(-1, 1, 28, 56) #.reshape((-1, 28, 2, 28)).transpose(0, 2, 1, 3)  # [50000, 28, 56]
         mnist_labels = pd.DataFrame(pd.read_csv(args.path_data +'train_result.csv')).to_numpy()[:, :]  # [50000, [orig_index, label]]
-        test_data = pd.DataFrame(pd.read_csv(args.path_data +'test.csv')).to_numpy()[:, :-1].reshape(-1, 28, 2, 28).transpose(0, 2, 1, 3)  # .reshape(-1, 1, 28, 56)
-
-        # plt.imshow(mnist_data[1][0])
-        # plt.figure()
-        # plt.imshow(mnist_data[1][1])
-        # print(mnist_labels[1][1])
-        # plt.show()
-        #
-        # plt.imshow(mnist_data[0][0])
-        # plt.figure()
-        # plt.imshow(mnist_data[0][1])
-        # print(mnist_labels[0][1])
-        # plt.show()
-
-        # mnist_data = mnist_data.reshape(-1,28,28)
+        test_data = pd.DataFrame(pd.read_csv(args.path_data +'test.csv')).to_numpy()[:, :-1].reshape(-1, 1, 28, 56)
 
         train_indices = np.arange(mnist_data.shape[0])
         np.random.shuffle(train_indices)
