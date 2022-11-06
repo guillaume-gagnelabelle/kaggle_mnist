@@ -8,7 +8,7 @@ from util import *
 from data import *
 from model import logistic
 
-# Author: Guillaume Gagné-Labelle
+# Authors: Guillaume Gagné-Labelle, Yann Saah, Giovanni Belval
 # Date: Oct 2022
 # Project: Kaggle Competition - IFT3395
 # Description: Classification of the sum of 2 MNIST images
@@ -20,11 +20,7 @@ args_form.add_argument("--decay", type=float, default=1e-5)
 args_form.add_argument("--lr", type=float, default=1e-3)
 args_form.add_argument("--train_pct", type=float, default=0.7)
 args_form.add_argument("--val_train_pct", type=float, default=0.15)
-args_form.add_argument("--loss_function", type=str, default="xent")
 args_form.add_argument("--path_data", type=str, default="mnist/")
-args_form.add_argument("--path_model", type=str, default="mnist/")
-args_form.add_argument("--save_models", action='store_true')
-args_form.add_argument("--use_scheduler", action='store_true')
 
 
 def main():
@@ -40,10 +36,7 @@ def main():
     test_set = Data(data=test_data, labels=np.empty((test_data.shape[0], 2)), batch_size=1)
 
     model = logistic(args)
-
-    # Did not implement other loss function yet, but can do so by adding elif:
-    if args.loss_function == "xent": criterion = xent
-    else: criterion = xent
+    criterion = xent
 
     best_loss, best_acc = np.inf, 0
     loss, acc = best_loss, best_acc
@@ -61,12 +54,8 @@ def main():
                 best_loss = loss
                 best_acc = acc
 
-            print(set, epoch)
-            print("loss : ", loss)
-            print("acc  : ", acc)
             args.loss[set][epoch] = loss
             args.acc[set][epoch] = acc
-        print()
 
     plt.title("loss")
     plt.plot(args.loss["train"].keys(), args.loss["train"].values(), label="train")
@@ -103,10 +92,9 @@ def main():
 
 
 
-def assess(model, dataset, criterion, update_model=False, testing=False):
+def assess(model, dataset, criterion, update_model=False):
     loss, correct, total = 0, 0, 0
 
-    i = 0
     for images, labels_with_indices in iter(dataset):
 
         total += images.shape[0]

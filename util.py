@@ -4,7 +4,7 @@ import torch
 import pandas as pd
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-# Author: Guillaume Gagné-Labelle
+# Authors: Guillaume Gagné-Labelle, Yann Saah, Giovanni Belval
 # Date: Oct 2022
 # Project: Kaggle Competition - IFT3395
 # Description: Classification of the sum of 2 MNIST images

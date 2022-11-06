@@ -7,7 +7,7 @@ import torch.nn.functional as F
 import time
 
 
-# Author: Guillaume Gagné-Labelle
+# Authors: Guillaume Gagné-Labelle, Yann Saah, Giovanni Belval
 # Date: Oct 2022
 # Project: Kaggle Competition - IFT3395
 # Description: Classification of the sum of 2 MNIST images
