@@ -82,14 +82,10 @@ def main():
     print()
 
     # open text file
-    if args.use_scheduler:
-        title = "results.csv"
-    else:
-        title = "results_no_sched.csv"
+    title = "results.csv"
     text_file = open(title, "w")
     text_file.write(res)
     text_file.close()
-
 
 
 def assess(model, dataset, criterion, update_model=False):
